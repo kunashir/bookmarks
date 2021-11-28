@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_28_141217) do
+ActiveRecord::Schema.define(version: 2021_11_28_144221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.string "title"
+    t.text "url"
+    t.string "shortening"
+    t.bigint "site_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["site_id"], name: "index_bookmarks_on_site_id"
+    t.index ["title"], name: "index_bookmarks_on_title"
+    t.index ["url"], name: "index_bookmarks_on_url"
+  end
 
   create_table "sites", force: :cascade do |t|
     t.string "url"
@@ -22,4 +34,5 @@ ActiveRecord::Schema.define(version: 2021_11_28_141217) do
     t.index ["url"], name: "index_sites_on_url", unique: true
   end
 
+  add_foreign_key "bookmarks", "sites"
 end
