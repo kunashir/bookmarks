@@ -1,0 +1,53 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Ruby
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: myapp
+          POSTGRES_DB: bookmarks_test
+          POSTGRES_PASSWORD: postgres
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@477b21f02be01bcb8030d50f37cfec92bfa615b6
+      - name: Install dependencies
+        run: |
+          sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev
+          bundle install
+      - name: Setup test database
+        env:
+          RAILS_ENV: test
+          POSTGRES_DB: bookmarks_test
+          PGHOST: localhost
+          POSTGRES_USER: myapp
+          POSTGRES_PASSWORD: postgres
+        run: |
+          cp config/database.ci.yml config/database.yml
+          rake db:create db:migrate
+      - name: Run tests
+        env:
+          RAILS_ENV: test
+          POSTGRES_DB: bookmarks_test
+          PGHOST: localhost
+          POSTGRES_USER: myapp
+          POSTGRES_PASSWORD: postgres
+        run: bundle exec rspec
