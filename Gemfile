@@ -25,6 +25,8 @@ gem 'turbolinks', '~> 5'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
+gem "httparty"
+gem "sidekiq"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -32,6 +34,11 @@ group :development, :test do
   gem "rspec"
   gem 'rspec-rails'
   gem 'factory_bot_rails', '~> 6.1'
+  gem 'dotenv-rails'
+end
+
+group :test do
+  gem "webmock"
 end
 
 group :development do
