@@ -1,13 +1,9 @@
-class ShorteningGenerator
+class ShorteningGenerator < BaseService
   attr_reader :full_link
   API_KEY = ENV["SHORTENING_PROVIDER_API_KEY"]
 
   class ConnectionError < StandardError; end
   class InvalidJSON < StandardError; end
-
-  def self.perform(args)
-    new(*args).perform
-  end
 
   def initialize(full_link)
     @full_link = full_link
