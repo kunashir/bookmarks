@@ -3,7 +3,6 @@
 require "rails_helper"
 
 RSpec.describe ShorteningGenerator do
-  # subject { RestockingShipments::CreateRestockingShipment }
   describe "generate shortening" do
     context "valid url" do
       it "returns shortening url" do
