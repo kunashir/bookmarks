@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 RSpec.describe ShorteningWorker, type: :worker do
   describe "execution" do
     it "updates shortening for a Bookmark" do

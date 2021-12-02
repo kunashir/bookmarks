@@ -1,8 +1,8 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Site, type: :model do
-  context 'validations' do
-    it { expect(Site.new).not_to be_valid  }
+  context "validations" do
+    it { expect(Site.new).not_to be_valid }
 
     it "has uniq URL" do
       existing_site = FactoryBot.create(:site)
@@ -11,4 +11,3 @@ RSpec.describe Site, type: :model do
     end
   end
 end
-

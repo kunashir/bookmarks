@@ -35,20 +35,19 @@ class ShorteningGenerator < BaseService
   end
 
   def generate_path(full_link)
-    "https://cutt.ly/api/api.php?key=#{API_KEY}&short=#{full_link}";
+    "https://cutt.ly/api/api.php?key=#{API_KEY}&short=#{full_link}"
   end
 
   def make_request(path)
-      headers = {"Content-Type" => "application/json"}
+    headers = {"Content-Type" => "application/json"}
 
-      begin
-        response = HTTParty.get(path, headers: headers)
-        response_message = response.message
-        JSON.parse response.body
-      rescue Net::OpenTimeout
-        raise ConnectionError.new('Network error')
-      rescue JSON::ParserError
-        raise InvalidJSON.new('Error parsing response')
-      end
+    begin
+      response = HTTParty.get(path, headers: headers)
+      JSON.parse response.body
+    rescue Net::OpenTimeout
+      raise ConnectionError.new("Network error")
+    rescue JSON::ParserError
+      raise InvalidJSON.new("Error parsing response")
     end
+  end
 end

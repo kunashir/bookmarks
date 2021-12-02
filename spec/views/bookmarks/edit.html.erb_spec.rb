@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "bookmarks/edit.html.erb", type: :view do
   it "show the form with bookmark data" do

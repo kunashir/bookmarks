@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Bookmarks", type: :request do
   describe "GET /index" do
@@ -17,7 +17,7 @@ RSpec.describe "Bookmarks", type: :request do
 
   describe "GET /create" do
     it "returns http success" do
-      post bookmarks_url, params: { bookmark: { title: "Title", url: "https://f1news.ru/artical1" }}
+      post bookmarks_url, params: {bookmark: {title: "Title", url: "https://f1news.ru/artical1"}}
       expect(response).to have_http_status(:redirect)
       bookmark = Bookmark.last
       expect(bookmark.title).to eq "Title"
@@ -27,7 +27,7 @@ RSpec.describe "Bookmarks", type: :request do
   describe "GET /update" do
     it "returns http success" do
       bookmark = FactoryBot.create :bookmark
-      patch bookmark_url(bookmark), params: { bookmark: {title: "New title", url: bookmark.url }}
+      patch bookmark_url(bookmark), params: {bookmark: {title: "New title", url: bookmark.url}}
       expect(response).to have_http_status(:redirect)
       bookmark.reload
       expect(bookmark.title).to eq "New title"
@@ -50,5 +50,4 @@ RSpec.describe "Bookmarks", type: :request do
       expect(Bookmark.find_by(id: bookmark.id)).to eq nil
     end
   end
-
 end
