@@ -10,8 +10,6 @@ $black: black;
         background: $black;
 }
 body {
-        background: $black;
-        color: $white;
         font-family: 'Merriweather', sans-serif;
 }
 h1,
@@ -20,19 +18,19 @@ h2 {
 }
 p {
         font-size: 16px;
-        color: $white;
 }
 a:visited {
         color: $black;
 }
 .jumbotron {
-        background: #0048CD;
-        color: $white;
         text-align: center;
         p {
-                color: $white;
                 font-size: 26px;
         }
+				h1 {
+        background: #0048CD;
+}
+
 }
 .link {
         color: $white;

@@ -43,6 +43,10 @@ jobs:
         run: |
           cp config/database.ci.yml config/database.yml
           rake db:create db:migrate
+      - name: Run webpack
+        env:
+          RAILS_ENV: test
+        run: rails assets:precompile
       - name: Run tests
         env:
           RAILS_ENV: test

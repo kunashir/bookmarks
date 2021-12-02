@@ -1,0 +1,25 @@
+<h1>Bookmarks#index <%= link_to "Add new", new_bookmark_path, class: "btn btn-primary"  %></h1>
+<ul>
+  <% flash.each do |type, msg| %>
+    <div class="alert alert-info">
+      <%= msg %>
+    </div>
+  <% end %>
+  <% @bookmarks.find_each do |bookmark| %>
+    <li>
+      <div class="row">
+        <div class="col-lg-6">
+          <div><%= bookmark.title %></div>
+          <div><%= link_to "Edit", edit_bookmark_path(bookmark) %></div>
+          <div><%= link_to "Delete", bookmark_path(bookmark), method: :delete %></div>
+        </div>
+        <div class="col-lg-2">
+          <p><%= link_to "Full link", bookmark.url %></p>
+          <% if bookmark.shortening %>
+            <p><%= link_to "Short link", bookmark.shortening %></p>
+          <% end %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>
