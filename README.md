@@ -1,24 +1,10 @@
-# README
+# Bookmarks
+production url: https://kunashir-bookmarks.herokuapp.com/bookmarks
+Known problem: sidekiq is not running because Heroku provides Redis v3 but Sidekiq requires 4.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Deploy process (to heroku):
 
-Things you may want to cover:
+* login into heroku
 
-* Ruby version
+* run `git push heroku main`
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
