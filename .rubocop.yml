@@ -1,0 +1,21 @@
+# We want Exclude directives from different
+# config files to get merged, not overwritten
+inherit_mode:
+  merge:
+    - Exclude
+
+require:
+  # Performance cops are bundled with Standard
+  - rubocop-performance
+  # Standard's config uses this custom cop,
+  # so it must be loaded
+  - standard/cop/semantic_blocks
+
+inherit_gem:
+  standard: config/base.yml
+
+AllCops:
+  Exclude:
+    - 'db/data_schema.rb'
+
+

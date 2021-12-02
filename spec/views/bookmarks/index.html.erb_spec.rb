@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "bookmarks/index.html.erb", type: :view do
   it "displays all the Bookmarks" do

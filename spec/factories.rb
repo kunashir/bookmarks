@@ -1,4 +1,3 @@
-
 FactoryBot.define do
   sequence(:url) { |n| "https://reddit.com/formula1-#{n}" }
 
@@ -11,7 +10,6 @@ FactoryBot.define do
   end
 
   factory :site do
-    url { "https://reddit.com"  }
+    url { "https://reddit.com" }
   end
 end
-
